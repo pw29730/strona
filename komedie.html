@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+ <TITLE>Moja filmoteka</TITLE>
+ <LINK REL=stylesheet TYPE="text/css" HREF="style.css">
+ <link rel="stylesheet" type="text/css" href="comments.css">
+ <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</HEAD>
+<BODY>
+	<CENTER>
+		<TABLE BORDER="1">
+			<TR HEIGHT="30">
+				<TH CLASS="purple" WIDTH="120"><a href="home.php">Główna</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="horrory.html">Horrory</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="komedie.html">Komedie</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="thrillery.html">Thrillery</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="historyczne.html">Historyczne</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="fantasy.html">Fantasy</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="sci-fi.html">Sci-Fi</A></TH>
+			</TR>
+		</TABLE>
+	</CENTER>
+<div id="container">
+	<p>Oto topowe komedie, jakie możemy Wam polecić. Podczas oglądania tych filmów, śmiechu nie ma końca! Nasza lista:</p>
+	
+	
+	<div class="rectangle">
+		<div class="title">
+			Forrest Gump
+		</div>
+		<div class="photo">
+			<img src="forest_gump.jpg" alt="Forest Gump" width=194px height=259px	>
+		</div>
+		<div class="description">
+			<p>Historia życia Forresta, chłopca o niskim ilorazie inteligencji z niedowładem kończyn, który staje się miliarderem i bohaterem wojny w Wietnamie...</p>
+				<button class="pushable">
+					<span class="front">
+						<a href="https://www.filmweb.pl/film/Forrest+Gump-1994-998" target="_blank">Czytaj więcej</a>
+					</span>
+				</button>		
+		</div>
+		<div class="rating">
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+		</div>
+		<script src="rating.js"></script>
+	</div>
+	<br>
+	<div class="rectangle">
+		<div class="title">
+			Listy do M
+		</div>
+		<div class="photo">
+			<img src="listy_do_m.jpg" alt="Listy do M" width=194px height=259px>
+		</div>
+		<div class="description">
+			<p>Mikołaj, prezenter radiowy, w wyniku zbiegu okoliczności poznaje Doris. Kolega z pracy kobiety, Melchior, romansuje z zamężną kobietą imieniem Karina. W Wigilię Bożego Narodzenia ich losy zaczynają się przeplatać...</p>
+				<button class="pushable">
+					<span class="front">
+						<a href="https://www.filmweb.pl/film/Listy+do+M.-2011-613510" target="_blank">Czytaj więcej</a>
+					</span>
+				</button>		
+		</div>
+	<br>
+	<div class="rating">
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+	</div>
+	<script src="rating.js"></script>
+</div>	
+<div class="comments"></div>
+
+<script>
+const comments_page_id = 7; 
+fetch("comments.php?page_id=" + comments_page_id).then(response => response.text()).then(data => {
+	document.querySelector(".comments").innerHTML = data;
+	document.querySelectorAll(".comments .write_comment_btn, .comments .reply_comment_btn").forEach(element => {
+		element.onclick = event => {
+			event.preventDefault();
+			document.querySelectorAll(".comments .write_comment").forEach(element => element.style.display = 'none');
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "']").style.display = 'block';
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "'] input[name='name']").focus();
+		};
+	});
+	document.querySelectorAll(".comments .write_comment form").forEach(element => {
+		element.onsubmit = event => {
+			event.preventDefault();
+			fetch("comments.php?page_id=" + comments_page_id, {
+				method: 'POST',
+				body: new FormData(element)
+			}).then(response => response.text()).then(data => {
+				element.parentElement.innerHTML = data;
+			});
+		};
+	});
+});
+</script>
+
+</BODY>
+</HTML>

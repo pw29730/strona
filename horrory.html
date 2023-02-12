@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+ <TITLE>Moja filmoteka</TITLE>
+ <LINK REL=stylesheet TYPE="text/css" HREF="style.css">
+ <link rel="stylesheet" type="text/css" href="comments.css">
+ <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</HEAD>
+<BODY>
+	<CENTER>
+		<TABLE BORDER="1">
+			<TR HEIGHT="30">
+				<TH CLASS="purple" WIDTH="120"><a href="home.php">Główna</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="horrory.html">Horrory</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="komedie.html">Komedie</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="thrillery.html">Thrillery</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="historyczne.html">Historyczne</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="fantasy.html">Fantasy</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="sci-fi.html">Sci-Fi</A></TH>
+			</TR>
+		</TABLE>
+	</CENTER>
+<div id="container">
+	<p>Oto topowe horrory, jakie możemy Wam polecić. Są to mrożące krew w żyłach filmy, po których ciężko zasnąć! Nasza lista:</p>
+	
+	
+	<div class="rectangle">
+		<div class="title">
+			Noc Oczyszczenia: Anarchia
+		</div>
+		<div class="photo">
+			<img src="noc_oczyszczenia.jpg" alt="Noc Oczyszczenia: Anarchia" width=194px height=259px	>
+		</div>
+		<div class="description">
+			<p>Podczas Nocy Oczyszczenia cztery osoby stają się celami żądnych krwi morderców. W przetrwaniu na ulicach Los Angeles pomaga im tajemniczy mężczyzna pragnący wyrównać własne rachunki za krzywdę z przeszłości...</p>
+				<button class="pushable">
+					<span class="front">
+						<a href="https://www.filmweb.pl/film/Noc+oczyszczenia%3A+Anarchia-2014-691078" target="_blank">Czytaj więcej</a>
+					</span>
+				</button>		
+		</div>
+		<div class="rating">
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+		</div>
+		<script src="rating.js"></script>
+	</div>
+	<br>
+	<div class="rectangle">
+		<div class="title">
+			Milczenie Owiec
+		</div>
+		<div class="photo">
+			<img src="milczenie_owiec.jpg" alt="Milczenie Owiec" width=194px height=259px>
+		</div>
+		<div class="description">
+			<p>Osadzony w więzieniu za kanibalizm, niezwykle wyrafinowany morderca - Hannibal Lecter (Anthony Hopkins) był niegdyś wybitnym psychiatrą. Jego cenne wskazówki mogą stać się teraz kluczem do rozpracowania psychiki tajemniczego zabójcy kobiet. Trzeba jednak znaleźć sposób, by nakłonić doktora Lectera do współpracy z FBI...</p>
+				<button class="pushable">
+					<span class="front">
+						<a href="https://www.filmweb.pl/film/Milczenie+owiec-1991-1047" target="_blank">Czytaj więcej</a>
+					</span>
+				</button>		
+		</div>
+	<br>
+	<div class="rating">
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+	</div>
+	<script src="rating.js"></script>
+</div>	
+<div class="comments"></div>
+
+<script>
+const comments_page_id = 6; 
+fetch("comments.php?page_id=" + comments_page_id).then(response => response.text()).then(data => {
+	document.querySelector(".comments").innerHTML = data;
+	document.querySelectorAll(".comments .write_comment_btn, .comments .reply_comment_btn").forEach(element => {
+		element.onclick = event => {
+			event.preventDefault();
+			document.querySelectorAll(".comments .write_comment").forEach(element => element.style.display = 'none');
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "']").style.display = 'block';
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "'] input[name='name']").focus();
+		};
+	});
+	document.querySelectorAll(".comments .write_comment form").forEach(element => {
+		element.onsubmit = event => {
+			event.preventDefault();
+			fetch("comments.php?page_id=" + comments_page_id, {
+				method: 'POST',
+				body: new FormData(element)
+			}).then(response => response.text()).then(data => {
+				element.parentElement.innerHTML = data;
+			});
+		};
+	});
+});
+</script>
+
+</BODY>
+</HTML>

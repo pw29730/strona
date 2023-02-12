@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8"/>
+ <TITLE>Moja filmoteka</TITLE>
+ <LINK REL=stylesheet TYPE="text/css" HREF="style.css">
+ <link rel=stylesheet type="text/css" href="comments.css">
+ <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</HEAD>
+<BODY>
+	<CENTER>
+		<TABLE BORDER="1">
+			<TR HEIGHT="30">
+				<TH CLASS="purple" WIDTH="120"><a href="home.php">Główna</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="horrory.html">Horrory</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="komedie.html">Komedie</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="thrillery.html">Thrillery</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="historyczne.html">Historyczne</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="fantasy.html">Fantasy</A></TH>
+				<TH CLASS="purple" WIDTH="120"><a href="sci-fi.html">Sci-Fi</A></TH>
+			</TR>
+		</TABLE>
+	</CENTER>
+<div id="container">
+	<p>Prezentujemy Wam kilka filmów nie z tego świata! Nasza lista:</p>
+	
+	
+	<div class="rectangle">
+		<div class="title">
+			Star Wars: Nowa Nadzieja
+		</div>
+		<div class="photo">
+			<img src="star_wars.jpg" alt="Star Wars: Nowa Nadzieja" width=194px height=259px	>
+		</div>
+		<div class="description">
+			<p>Mała grupa Rebeliantów podejmuje walkę kradnąc tajne plany najpotężniejszej broni Imperium - tzw. Gwiazdy Śmierci. Najbardziej zaufany sługa Imperatora - Darth Vader musi odzyskać plany i odnaleźć ukrytą Rycerze Jedi zostali wytępieni, a Imperium żelazną ręka sprawuje rządy nad całą galaktyką...</p>
+				<button class="pushable">
+					<span class="front">
+						<a href="https://www.filmweb.pl/film/Gwiezdne+wojny%3A+Cz%C4%99%C5%9B%C4%87+IV+Nowa+nadzieja-1977-759" target="_blank">Czytaj więcej</a>
+					</span>
+				</button>	
+		</div>
+		<div class="rating">
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+			<i class="rating__star far fa-star"></i>
+		</div>
+		<script src="rating.js"></script>
+	</div>
+	<br>
+	<div class="rectangle">
+		<div class="title">
+			Incepcja
+		</div>
+		<div class="photo">
+			<img src="incepcja.jpg" alt="Incepcja" width=194px height=259px>
+		</div>
+		<div class="description">
+			<p> Dom Cobb (Leonardo DiCaprio) jest utalentowanym złodziejem, absolutnie najlepszym w niebezpiecznej sztuce wydobywania wartościowych informacji ze świadomości osób znajdujących się w fazie głębokiego snu, kiedy ludzka psychika jest najbardziej podatna na ingerencję...</p>
+				<button class="pushable">
+					<span class="front">
+						<a href="https://www.filmweb.pl/film/Incepcja-2010-500891" target="_blank">Czytaj więcej</a>
+					</span>
+				</button>		
+		</div>
+	<br>
+	<div class="rating">
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+		<i class="rating__star far fa-star"></i>
+	</div>
+	<script src="rating.js"></script>
+</div>	
+
+<div class="comments"></div>
+
+<script>
+const comments_page_id = 2; 
+fetch("comments.php?page_id=" + comments_page_id).then(response => response.text()).then(data => {
+	document.querySelector(".comments").innerHTML = data;
+	document.querySelectorAll(".comments .write_comment_btn, .comments .reply_comment_btn").forEach(element => {
+		element.onclick = event => {
+			event.preventDefault();
+			document.querySelectorAll(".comments .write_comment").forEach(element => element.style.display = 'none');
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "']").style.display = 'block';
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "'] input[name='name']").focus();
+		};
+	});
+	document.querySelectorAll(".comments .write_comment form").forEach(element => {
+		element.onsubmit = event => {
+			event.preventDefault();
+			fetch("comments.php?page_id=" + comments_page_id, {
+				method: 'POST',
+				body: new FormData(element)
+			}).then(response => response.text()).then(data => {
+				element.parentElement.innerHTML = data;
+			});
+		};
+	});
+});
+</script>
+
+</BODY>
+</HTML>

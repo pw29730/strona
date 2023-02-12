@@ -1,0 +1,212 @@
+BODY{
+    font-family: Verdana;  
+    background-image: url("avatar.jpg");
+    }
+    
+    A{
+    text-decoration: none;
+    color: white;
+    }
+    A:hover{
+    text-decoration: underline;
+    color: red;
+    }
+    TH{
+    background-color: #33CCFF;
+    font-family: cursive;
+    }
+     
+    p{
+    font-family: Verdana;
+    color: white;
+    text-shadow: 2px 1px 2px black; color: white;
+    text-align: center;
+    text-align: center;
+    }
+    
+    #container{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+    #menu{
+    text-align: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+    .rectangle{
+    text-align: center;
+    width: 800px;
+    background-color: gray;
+    margin-left: auto;
+    margin-right: auto;
+    height: 301px;
+    }
+    
+    .title{
+    text-align: left;
+    width: 30%;
+    height: auto;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    text-decoration: underline overline red 2px;
+    }
+    .photo{
+    float: left;
+    width: 194px;
+    height: 259px;
+    margin-left: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    }
+    .description{
+    background-color: gray;
+    float: right;
+    width: 600px;
+    padding-bottom: 5px;
+    height: auto;
+    margin-bottom: 5px;
+    }
+    .pushable{
+    background: hsl(340deg 100% 32%);
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    float: right;
+    margin-right: 5px;
+    }
+    .front {
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+    }
+    .pushable:active .front {
+    transform: translateY(-2px);
+    }
+    #ad{
+    float: left;
+    clear: both;
+    width: 100px;
+    height: 500px;
+    margin-left: 50px;
+    border: dotted red;
+    }
+    .news{
+    height: 550px;
+    width: 800px;
+    background-color: gray;
+    margin: auto;
+    border: 3px solid black;
+    padding: 10px;
+    }
+    .news_title{
+    text-align: center;
+    text-shadow: 2px 1px 2px black; color: red;
+    }
+    
+    .footer{
+    text-align: center;
+    background-color: gray;
+    clear: both;
+    }
+    #zegar{
+    text-align: center;
+    background-color: gray;
+    border: dotted red;
+    width: 350px;
+    padding: 5px;
+    }
+    .rating__star{
+    cursor: pointer;
+    color: #dabd18b2;
+    }
+    .container1{
+    width: 150px;
+    float: right;
+    color: white;
+    margin-right: 10px;
+    border: dotted red;
+    padding: 5px;
+    }
+    #rejestracja{
+    width: 150px;
+    color: white;
+    margin: auto;
+    text-align: center;
+    }
+
+    
+
+
+
+
+
+    * {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+        background-color: #FFFFFF;
+        margin: 0;
+    }
+    .navtop {
+        background-color: #3f69a8;
+        height: 60px;
+        width: 100%;
+        border: 0;
+    }
+    .navtop div {
+        display: flex;
+        margin: 0 auto;
+        width: 1000px;
+        height: 100%;
+    }
+    .navtop div h1, .navtop div a {
+        display: inline-flex;
+        align-items: center;
+    }
+    .navtop div h1 {
+        flex: 1;
+        font-size: 24px;
+        padding: 0;
+        margin: 0;
+        color: #ecf0f6;
+        font-weight: normal;
+    }
+    .navtop div a {
+        padding: 0 20px;
+        text-decoration: none;
+        color: #c5d2e5;
+        font-weight: bold;
+    }
+    .navtop div a i {
+        padding: 2px 8px 0 0;
+    }
+    .navtop div a:hover {
+        color: #ecf0f6;
+    }
+    .content {
+        width: 1000px;
+        margin: 0 auto;
+    }
+    .content h2 {
+        margin: 0;
+        padding: 25px 0;
+        font-size: 22px;
+        border-bottom: 1px solid #ebebeb;
+        color: #666666;
+    }
